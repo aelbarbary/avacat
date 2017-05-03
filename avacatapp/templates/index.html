@@ -1,0 +1,83 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Search Bar Animation</title>
+  <link rel="stylesheet" href="{% static "css/search.css" %}">
+    <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{% static "css/article-lists/article-list-vertical.css" %}">
+    <link rel="stylesheet" href="{% static "css/animate.css" %}">
+
+    <!-- Custom Fonts -->
+    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?" id="searchTerm"  onblur="search(document.getElementById('searchTerm').value)" on>
+      <button type="submit" class="searchButton" onclick="search(document.getElementById('searchTerm').value)">
+        <i class="fa fa-plus"></i>
+      </button>
+   </div>
+	 <div>
+ 			<ul class="article-list-vertical" id="searchResults">
+
+ 			</ul>
+ 		</div>
+	</div>
+
+
+	<script id="searchTemplate" type="text/x-jQuery-tmpl">
+		<li>
+				<a href="#" style="background-image: url('assets/images/pictures/sands-of-life.jpg')"></a>
+				<div>
+						<h2><a href="#">${_source.name}</a></h2>
+						<p>${_source.description}</p>
+						<a href="#" class="read-more">Read more &rarr;</a>
+				</div>
+		</li>
+  </script>
+
+    <!-- jQuery -->
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
+
+    <script src="{% static "js/elasticsearch.jquery.min.js" %}"></script>
+    <script src="{% static "js/elasticsearch.min.js" %}"></script>
+    <script src="{% static "js/search.js" %}"></script>
+
+    <script src="{% static "js/require.js" %}"></script>
+</body>
+</html>
+
+
+<!-- {% if results %}
+              <ul class="product-list-vertical">
+                {% for result in results %}
+                <li style="background:{% if event.gender %}#ffbff7{% else %}#c3e2fb{% endif %}">
+
+                  <div>
+                      {{ result.author }} | {{result.title}} | {{result.text}}
+                  </div>
+
+                </li>
+                {% endfor %}
+              </ul>
+
+              {% else %}
+                  <p style="text-align: center; color: red;">No result</p>
+              {% endif %} -->
