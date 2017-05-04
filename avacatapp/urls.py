@@ -5,5 +5,6 @@ from . import views
 
 app_name = 'avacatapp'
 urlpatterns = [
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.index, name='index'),
+    url(r'^search', views.search, name='search'),
 ]

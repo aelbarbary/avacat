@@ -18,12 +18,17 @@
 </head>
 <body>
   <div class="wrap">
-   <div class="search">
+   <!-- <div class="search">
       <input type="text" class="searchTerm" placeholder="What are you looking for?" id="searchTerm"  onblur="search(document.getElementById('searchTerm').value)" on>
       <button type="submit" class="searchButton" onclick="search(document.getElementById('searchTerm').value)">
         <i class="fa fa-plus"></i>
       </button>
-   </div>
+   </div> -->
+
+	   <form class="search" action="">
+  		  <input type="search" placeholder="Search here..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
+  	  	<button type="submit" onclick="search(document.getElementById('searchTerm').value)">Search</button>
+		 </form>
 	 <div>
  			<ul class="article-list-vertical" id="searchResults">
 
@@ -36,8 +41,8 @@
 		<li>
 				<a href="#" style="background-image: url('assets/images/pictures/sands-of-life.jpg')"></a>
 				<div>
-						<h2><a href="#">${_source.name}</a></h2>
-						<p>${_source.description}</p>
+						<h2><a href="#">${fields.name}</a></h2>
+						<p>${fields.description}</p>
 						<a href="#" class="read-more">Read more &rarr;</a>
 				</div>
 		</li>

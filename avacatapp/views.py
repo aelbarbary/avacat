@@ -3,12 +3,22 @@ from .search import *
 from django.views.generic import CreateView
 from .models import Resource
 from .forms import ResourceForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
+from django.http import HttpRequest,HttpResponse
+
 
 def index(request):
-
     context = {}
-
     return render(request, 'index.html', context)
+
+@csrf_exempt
+def search(request):
+    searchTerm = request.POST.get('searchTerm')
+    resources = list(Resource.objects.filter(name__icontains = searchTerm))
+    data = serializers.serialize('json', resources)
+    return HttpResponse(data, content_type='application/json')
 
 class newResourceView(CreateView):
     template_name = 'new_resource_form.html'
