@@ -2,7 +2,7 @@
 
 body { no-repeat center center fixed; background-size:cover;}
 
-.search {width: 500px;height: 40px;margin: 50px auto;background: #444;border-radius:  3px;border: 1px solid #fff;}
+.search {width: 500px;height: 40px;margin: 30px auto;background: #444;border-radius:  3px;border: 1px solid #fff;}
 
 .search input {width: 370px;padding: 10px 5px;float: left;color: #ccc;border: 0;background: transparent;border-radius: 3px 0 0 3px;}
 
@@ -16,7 +16,3 @@ body { no-repeat center center fixed; background-size:cover;}
 .search button:focus {outline: 0;}
 
 /*Resize the wrap to see the search bar change!*/
-.wrap{
-  width: 700px;
-  margin: 0 auto;
-}

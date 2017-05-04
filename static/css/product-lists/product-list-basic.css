@@ -64,30 +64,30 @@
 
 /* Rating */
 
-.product-list-basic .product-rating div{
+.product-list-basic .resource-engagement {
     display: inline-block;
     width: 80px;
     margin-top: 10px;
 }
 
-.product-list-basic .product-rating .product-stars{
+.product-list-basic .resource-engagement .product-stars{
     display: inline-block;
 
-    color: #f09911;
+    color: #3F7FBF;
     font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
 }
 
-.product-list-basic .product-rating .product-stars i{
+.product-list-basic .resource-engagement .product-stars i{
     margin-right: 2px;
 }
 
-.product-list-basic .product-rating span{
+.product-list-basic .resource-engagement span{
     margin-bottom: -2px;
 }
 
-.product-list-basic .product-rating span a{
+.product-list-basic .resource-engagement span a{
     color: #808080;
     text-decoration: none;
 }

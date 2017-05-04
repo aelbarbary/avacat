@@ -8,16 +8,17 @@
     <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="{% static "css/article-lists/article-list-vertical.css" %}">
+    <link rel="stylesheet" href="{% static "css/product-lists/product-list-basic.css" %}">
     <link rel="stylesheet" href="{% static "css/animate.css" %}">
 
     <!-- Custom Fonts -->
+
     <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <div class="wrap">
+  <div style="text-align:center">
    <!-- <div class="search">
       <input type="text" class="searchTerm" placeholder="What are you looking for?" id="searchTerm"  onblur="search(document.getElementById('searchTerm').value)" on>
       <button type="submit" class="searchButton" onclick="search(document.getElementById('searchTerm').value)">
@@ -25,12 +26,14 @@
       </button>
    </div> -->
 
-	   <form class="search" action="">
+	 		<img src="{% static "images/logo.png" %}" width="150px" style="margin:10px auto;"/>
+	   	<form class="search" action="">
+
   		  <input type="search" placeholder="Search here..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
   	  	<button type="submit" onclick="search(document.getElementById('searchTerm').value)">Search</button>
 		 </form>
 	 <div>
- 			<ul class="article-list-vertical" id="searchResults">
+ 			<ul class="product-list-basic" id="searchResults">
 
  			</ul>
  		</div>
@@ -38,13 +41,24 @@
 
 
 	<script id="searchTemplate" type="text/x-jQuery-tmpl">
-		<li>
-				<a href="#" style="background-image: url('assets/images/pictures/sands-of-life.jpg')"></a>
-				<div>
-						<h2><a href="#">${fields.name}</a></h2>
-						<p>${fields.description}</p>
-						<a href="#" class="read-more">Read more &rarr;</a>
+	<li>
+
+				<a href="#" class="product-photo">
+						<img src="assets/images/products/iphone6.jpg" height="130" alt="iPhone 6">
+				</a>
+
+				<h2><a href="#">${fields.name}</a></h2>
+
+				<p class="product-description">${fields.description}</p>
+
+				<div class="resource-engagement">
+						<span class="product-stars">
+						<i class="fa fa-thumbs-up" aria-hidden="true"></i> 0
+						<i class="fa fa-thumbs-down" aria-hidden="true"></i> 0
+						<i class="fa fa-edit" aria-hidden="true"></i>
+						</span>
 				</div>
+
 		</li>
   </script>
 
