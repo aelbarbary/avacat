@@ -6,7 +6,8 @@ from .forms import ResourceForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
-from django.http import HttpRequest,HttpResponse
+from django.http import HttpRequest,HttpResponse,HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
 
 
 def index(request):
@@ -24,7 +25,7 @@ class newResourceView(CreateView):
     template_name = 'new_resource_form.html'
     model = Resource
     form_class = ResourceForm
-    success_url = '/'
+    success_url = "/"
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -41,6 +42,7 @@ class newResourceView(CreateView):
             print("valid")
             return self.form_valid(form)
         else:
+            print("invalid")
             return self.form_invalid(form)
 
     def form_valid(self, form):
