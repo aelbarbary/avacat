@@ -42,9 +42,43 @@ function search(searchTerm) {
         var searchResults = document.getElementById('searchResults');
         $('#searchResults').empty();
         json.forEach(function(hit) {
-            console.log(hit);
             $("#searchTemplate").tmpl(hit).appendTo("#searchResults");
+
         });
+      },
+      error : function(xhr,errmsg,err) {
+          $('#answer-error-' + id).show();
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+      }
+  });
+};
+
+function like(id) {
+  event.preventDefault();
+  $.ajax({
+      url : "like/" + id,
+      type : "GET",
+      success : function(json) {
+        var likes = Number($("#" + "likes-" +  id).text());
+        $("#likes-" + id).text(likes+1);
+      },
+      error : function(xhr,errmsg,err) {
+          $('#answer-error-' + id).show();
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+      }
+  });
+};
+
+function dislike(id) {
+  console.log("disliked called: " + id);
+  event.preventDefault();
+  $.ajax({
+      url : "dislike/" + id,
+      type : "GET",
+      success : function(json) {
+        console.log("success");
+        var dislikes = Number($("#" + "dislikes-" +  id).text());
+        $("#dislikes-" + id).text(dislikes+1);
       },
       error : function(xhr,errmsg,err) {
           $('#answer-error-' + id).show();

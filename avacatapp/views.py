@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .search import *
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Resource
 from .forms import ResourceForm
 from django.http import JsonResponse
@@ -21,41 +21,29 @@ def search(request):
     resources = list(Resource.objects.filter(name__icontains = searchTerm))
     for resource in resources:
         resource.image = resource.image.url
-        print(resource.image) 
     data = serializers.serialize('json', resources)
     return HttpResponse(data, content_type='application/json')
 
-class newResourceView(CreateView):
-    template_name = 'new_resource_form.html'
+def like(request, id):
+    print(id)
+    obj = Resource.objects.get(pk=id)
+    obj.likes = obj.likes + 1;
+    obj.save()
+    return HttpResponse()
+
+def dislike(request, id):
+    print(id)
+    obj = Resource.objects.get(pk=id)
+    obj.dislikes = obj.dislikes + 1;
+    obj.save()
+    return HttpResponse()
+
+class ResourceCreate(CreateView):
     model = Resource
-    form_class = ResourceForm
     success_url = "/"
+    fields = ['name', 'description', 'link', 'image']
 
-    def get(self, request, *args, **kwargs):
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        return self.render_to_response(
-            self.get_context_data(form=form))
-    def post(self, request, *args, **kwargs):
-        print(request)
-        self.object = None
-        # form_class = self.get_form_class()
-        # form = self.get_form(form_class)
-        form = ResourceForm( request.POST, request.FILES)
-        if (form.is_valid()):
-            print("valid")
-            print(len(request.FILES))
-            return self.form_valid(form)
-        else:
-            print("invalid")
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-
-        self.object = form.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-    def form_invalid(self, form):
-        return self.render_to_response(
-            self.get_context_data(form=form))
+class ResourceUpdate(UpdateView):
+    model = Resource
+    success_url = "/"
+    fields = ['name', 'description', 'link', 'image']

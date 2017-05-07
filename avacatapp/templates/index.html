@@ -7,12 +7,10 @@
   <link rel="stylesheet" href="{% static "css/search.css" %}">
     <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
-
     <link rel="stylesheet" href="{% static "css/product-lists/product-list-basic.css" %}">
     <link rel="stylesheet" href="{% static "css/animate.css" %}">
 
     <!-- Custom Fonts -->
-
     <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -32,7 +30,7 @@
 				a cat has a very short tem memory ... so as ava-cat ... it only remebers things that matter
 			</div>
 
-			<a href="/resource/new" class="add-resource"> <i class="fa fa-plus" aria-hidden="true"> new </i> </a>
+			<a href="/new" class="add-resource"> <i class="fa fa-plus" aria-hidden="true"> new </i> </a>
 			<form class="search" action="">
 
   		  <input type="search" placeholder="Search here..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
@@ -59,9 +57,19 @@
 
 				<div class="resource-engagement">
 						<span class="product-stars">
-						<i class="fa fa-thumbs-up" aria-hidden="true"></i> 0
-						<i class="fa fa-thumbs-down" aria-hidden="true"></i> 0
-						<i class="fa fa-edit" aria-hidden="true"></i>
+								<button onclick="like(${pk})">
+									<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+									<label id="likes-${pk}"> ${fields.likes} </label>
+								</button>
+
+								<button onclick="dislike(${pk})">
+									<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+									<label id="dislikes-${pk}"> ${fields.dislikes} </label>
+								</button>
+
+								<button onclick="location.href='edit/${pk}';">
+									<i class="fa fa-edit" aria-hidden="true"></i>
+								</button>
 						</span>
 				</div>
 
