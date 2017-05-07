@@ -30,12 +30,12 @@
 
 {% block content %}
 <div class="form">
-<form method="post" action=".">
+<form method="post" action="." enctype="multipart/form-data">
   <h1>Sign Up</h1>
   {% csrf_token %}
   <legend><span class="number">1</span>Your basic info</legend>
   {{ form.as_p }}
-  
+
   <input type="submit" value="{% trans 'Submit' %}" />
 </form>
 <div class="form">

@@ -16,8 +16,12 @@ def index(request):
 
 @csrf_exempt
 def search(request):
+    print (request.POST.get('searchTerm'))
     searchTerm = request.POST.get('searchTerm')
     resources = list(Resource.objects.filter(name__icontains = searchTerm))
+    for resource in resources:
+        resource.image = resource.image.url
+        print(resource.image) 
     data = serializers.serialize('json', resources)
     return HttpResponse(data, content_type='application/json')
 
@@ -36,16 +40,19 @@ class newResourceView(CreateView):
     def post(self, request, *args, **kwargs):
         print(request)
         self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        # form_class = self.get_form_class()
+        # form = self.get_form(form_class)
+        form = ResourceForm( request.POST, request.FILES)
         if (form.is_valid()):
             print("valid")
+            print(len(request.FILES))
             return self.form_valid(form)
         else:
             print("invalid")
             return self.form_invalid(form)
 
     def form_valid(self, form):
+
         self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
 
