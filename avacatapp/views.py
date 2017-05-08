@@ -44,9 +44,9 @@ def dislike(request, id):
 class ResourceCreate(CreateView):
     model = Resource
     success_url = "/"
-    fields = ['name', 'description', 'link', 'image']
+    fields = ['name', 'value', 'link', 'image']
 
 class ResourceUpdate(UpdateView):
     model = Resource
     success_url = "/"
-    fields = ['name', 'description', 'link', 'image']
+    fields = ['name', 'value', 'link', 'image']
