@@ -1,5 +1,22 @@
-<form method="post" enctype="multipart/form-data">
+{% load static %}
+
+<head>
+	<meta charset="UTF-8">
+	<title>Search Bar Animation</title>
+  <link rel="stylesheet" href="{% static "css/resource-form.css" %}">
+    
+    <!-- Custom Fonts -->
+    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<div class="container">
+
+<form method="post" enctype="multipart/form-data" id="contact">
+    <h3>create new resource</h3>
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>
+
+</div>

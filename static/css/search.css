@@ -8,12 +8,12 @@ body { no-repeat center center fixed; background-size:cover;}
 
 .search input:focus {outline: 0;background:transparent;}
 
-.search button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 40px;width: 120px;color: #fff;background: transparent;border-left: 1px solid #fff;border-radius: 0 3px 3px 0;}
+.search button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 40px;width: 120px;color: #fff;background: transparent;border-left: 1px solid #fff;border-radius: 0 3px 3px 0; height: 38px;}
 
-.search button:hover {background: #fff;color:#444;}
+.search button:hover {background: #ff6600;color:#ffffff;}
 .search button:active {box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);}
 
-.search button:focus {outline: 0;}
+/*.search button:focus {outline: 0;}*/
 
 /*Resize the wrap to see the search bar change!*/
 

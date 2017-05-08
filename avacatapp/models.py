@@ -12,8 +12,8 @@ class Resource(models.Model):
    link = models.CharField(max_length=500, blank=True)
    created_date = models.DateField(default=timezone.now)
    image = models.ImageField(upload_to = "images", default = 'images/placeholder.png')
-   likes = models.IntegerField()
-   dislikes = models.IntegerField()
+   likes = models.IntegerField(default = 0)
+   dislikes = models.IntegerField(default = 0)
 
    def indexing(self):
        obj = ResourceIndex(
