@@ -18,7 +18,8 @@ def index(request):
 def search(request):
     print (request.POST.get('searchTerm'))
     searchTerm = request.POST.get('searchTerm')
-    resources = list(Resource.objects.filter(name__icontains = searchTerm))
+    resources = list(Resource.objects.filter(name__icontains = searchTerm)
+                    .order_by('-likes', 'dislikes') )
     for resource in resources:
         resource.image = resource.image.url
     data = serializers.serialize('json', resources)

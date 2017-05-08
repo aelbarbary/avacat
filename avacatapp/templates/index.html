@@ -33,7 +33,7 @@
 			<a href="/new" class="add-resource"> <i class="fa fa-plus" aria-hidden="true"> new </i> </a>
 			<form class="search" action="">
 
-  		  <input type="search" placeholder="Search here..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
+  		  <input type="search" placeholder="Search ava-cat ..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
   	  	<button type="submit" onclick="search(document.getElementById('searchTerm').value)">Search</button>
 		 </form>
 	 <div>
@@ -53,7 +53,14 @@
 
 				<h2><a href="#">${fields.name}</a></h2>
 
-				<p class="product-description">${fields.description}</p>
+				<p class="product-description">
+					${fields.description}
+					<br/>
+					<a href="${fields.link}" style="visibility: ${fields.link != "" ? 'visible' : 'hidden' }">
+						 more info
+					</a>
+
+				</p>
 
 				<div class="resource-engagement">
 						<span class="product-stars">
