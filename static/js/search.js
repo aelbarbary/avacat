@@ -31,13 +31,15 @@
 // };
 
 function search(searchTerm) {
+  console.log(searchTerm);
   event.preventDefault();
+  var data = {
+    searchTerm : searchTerm
+  };
   $.ajax({
       url : "search/", // the endpoint
       type : "POST", // http method
-      data : {
-               searchTerm : searchTerm
-             },
+      data : JSON.stringify(data),
       success : function(json) {
         var searchResults = document.getElementById('searchResults');
         $('#searchResults').empty();
