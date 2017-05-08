@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.http import HttpRequest,HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
+import json
 
 
 def index(request):
@@ -16,8 +17,9 @@ def index(request):
 
 @csrf_exempt
 def search(request):
-    print (request.POST.get('searchTerm'))
-    searchTerm = request.POST.get('searchTerm')
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    searchTerm = body['searchTerm']
     resources = list(Resource.objects.filter(name__icontains = searchTerm)
                     .order_by('-likes', 'dislikes') )
     for resource in resources:
