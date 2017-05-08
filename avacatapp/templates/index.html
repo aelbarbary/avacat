@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Search Bar Animation</title>
+	<title>ava-cat</title>
   <link rel="stylesheet" href="{% static "css/search.css" %}">
     <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
@@ -17,20 +17,13 @@
 </head>
 <body>
   <div style="text-align:center">
-   <!-- <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?" id="searchTerm"  onblur="search(document.getElementById('searchTerm').value)" on>
-      <button type="submit" class="searchButton" onclick="search(document.getElementById('searchTerm').value)">
-        <i class="fa fa-plus"></i>
-      </button>
-   </div> -->
-
 
 	 		<input class="logo-button" type="image" src="{% static "images/logo.png" %}" data-toggle="collapse" data-target="#demo" />
 			<div id="demo" class="collapse">
 				a cat has a very short tem memory ... so as ava-cat ... it only remebers things that matter
 			</div>
 
-			<a href="/new" class="add-resource"> <i class="fa fa-plus" aria-hidden="true"> new </i> </a>
+			<a href="/new" class="add-resource" target="_blank"> <i class="fa fa-plus" aria-hidden="true"> new </i> </a>
 			<form class="search" action="">
 
   		  <input type="search" placeholder="Search ava-cat ..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
