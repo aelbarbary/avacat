@@ -7,3 +7,6 @@ class ResourceForm(forms.ModelForm):
     class Meta:
         model = Resource
         exclude = []
+        widgets = {
+            'Value': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }

@@ -24,6 +24,7 @@ def search(request):
                     .order_by('-likes', 'dislikes') )
     for resource in resources:
         resource.image = resource.image.url
+        resource.value = resource.value.replace('\n', '<br/>')
     data = serializers.serialize('json', resources)
     return HttpResponse(data, content_type='application/json')
 

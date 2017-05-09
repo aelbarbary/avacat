@@ -40,15 +40,16 @@
 
 	<script id="searchTemplate" type="text/x-jQuery-tmpl">
 	<li>
-
-				<a href="${fields.image}" class="product-photo" target="_blank">
-						<img src=${fields.image} height="130" alt="iPhone 6">
-				</a>
+				{% templatetag openvariable %}if fields.image.indexOf("placeholder.png") == -1 {% templatetag closevariable %}
+					<a href="${fields.image}" class="product-photo" target="_blank">
+							<img src=${fields.image} height="130" alt="iPhone 6">
+					</a>
+				{% templatetag openvariable %}/if{% templatetag closevariable %}
 
 				<h2><a href="#">${fields.name}</a></h2>
 
-				<p class="product-description dont-break-out">
-					${fields.value}
+				<p class="product-description dont-break-out alert alert-info">
+					{% templatetag openvariable %}html fields.value{% templatetag closevariable %}
 					<br/>
 					<a href="${fields.link}" style="visibility: ${fields.link != "" ? 'visible' : 'hidden' }">
 						 more info
