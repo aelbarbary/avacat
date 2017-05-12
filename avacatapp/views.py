@@ -12,7 +12,7 @@ import json
 
 
 def index(request):
-    searchTerm = request.GET.get('searchTerm', '')
+    searchTerm = request.GET.get('q', '')
     print(searchTerm)
     context = {'searchTerm': searchTerm}
     return render(request, 'index.html', context)
