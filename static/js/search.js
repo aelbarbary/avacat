@@ -29,6 +29,11 @@
 //     console.trace(err.message);
 // });
 // };
+function loadSearchTerm(searchTerm)
+{
+  $('#search-term').val(searchTerm);
+  search(searchTerm);
+}
 
 function search(searchTerm) {
   console.log(searchTerm);

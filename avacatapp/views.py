@@ -12,7 +12,9 @@ import json
 
 
 def index(request):
-    context = {}
+    searchTerm = request.GET.get('searchTerm', '')
+    print(searchTerm)
+    context = {'searchTerm': searchTerm}
     return render(request, 'index.html', context)
 
 @csrf_exempt
