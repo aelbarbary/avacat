@@ -6,7 +6,10 @@
 	<title>ava-cat</title>
   <link rel="stylesheet" href="{% static "css/search.css" %}">
     <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+		<script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
 
+		<script src="http://malsup.github.com/jquery.form.js"></script>
     <link rel="stylesheet" href="{% static "css/product-lists/product-list-basic.css" %}">
     <link rel="stylesheet" href="{% static "css/animate.css" %}">
 
@@ -17,18 +20,26 @@
 </head>
 <body onload="loadSearchTerm('{{searchTerm}}')">
   <div style="text-align:center">
-
-	 		<input class="logo-button" type="image" src="{% static "images/logo.png" %}" data-toggle="collapse" data-target="#demo" />
-			<div id="demo" class="collapse  alert-success">
-				Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
+			<div style="background-color:lightgray">
+	 		<input class="logo-button" type="image"
+				src="{% static "images/logo.png" %}" style="outline:none" />
 			</div>
 
+			<blockquote class="alert-info" style="margin-bottom:10px;">
+				Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
+			</blockquote>
 
-			<a href="/new" class="add-resource" target="_blank"> <i class="fa fa-plus" aria-hidden="true"> new </i> </a>
+			<a  data-toggle="modal" href="new" class="add-resource action"
+				data-target="#modal-new" title="edit item" data-tooltip>
+				<button class="fa fa-plus ">
+				<label>New</label>
+				</button>
+			</a>
+
 			<form class="search" action="">
 
-  		  <input id="search-term" type="search" placeholder="Search ava-cat ..." required id="searchTerm" onblur="search(document.getElementById('searchTerm').value)">
-  	  	<button type="submit" onclick="search(document.getElementById('searchTerm').value)">Search</button>
+  		  <input id="search-term" type="search" placeholder="Search ava-cat ..." required onblur="search(document.getElementById('searchTerm').value)">
+  	  	<button type="submit" onclick="search(document.getElementById('search-term').value)">Search</button>
 		 </form>
 	 <div>
  			<ul class="product-list-basic" id="searchResults">
@@ -37,6 +48,20 @@
  		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
 
 	<script id="searchTemplate" type="text/x-jQuery-tmpl">
 	<li>
@@ -59,20 +84,25 @@
 
 				<div class="resource-engagement">
 						<span class="product-stars">
-								<button onclick="like(${pk})" class="button-action">
-									<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-									<label id="likes-${pk}"> ${fields.likes} </label>
-								</button>
+								<a href="#">
+									<button onclick="like(${pk})" class="fa fa-thumbs-up">
+										<label id="likes-${pk}"> ${fields.likes} </label>
+									</button>
+								</a>
 
-								<button onclick="dislike(${pk})" class="button-action">
-									<i class="fa fa-thumbs-down" aria-hidden="true"></i>
-									<label id="dislikes-${pk}"> ${fields.dislikes} </label>
-								</button>
+								<a href="#">
+									<button onclick="dislike(${pk})" class="fa fa-thumbs-down">
+										<label id="dislikes-${pk}"> ${fields.dislikes} </label>
+									</button>
+								</a>
 
-								<button onclick="location.href='edit/${pk}';" class="button-action">
-									<i class="fa fa-edit" aria-hidden="true"></i>
+								<a  data-toggle="modal" href="edit/${pk}"
+								data-target="#modal-edit" title="edit item" data-tooltip>
+									<button class="fa fa-pencil">
 									<label>edit</label>
-								</button>
+									</button>
+								</a>
+
 						</span>
 				</div>
 
@@ -80,8 +110,6 @@
   </script>
 
     <!-- jQuery -->
-    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
-		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>

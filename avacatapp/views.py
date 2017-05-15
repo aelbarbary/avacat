@@ -46,10 +46,12 @@ def dislike(request, id):
 
 class ResourceCreate(CreateView):
     model = Resource
+    template_name  ="avacatapp/new_resource_form.html"
     success_url = "/"
     fields = ['name', 'value', 'link', 'image']
 
 class ResourceUpdate(UpdateView):
     model = Resource
+    template_name = "avacatapp/edit_resource_form.html"
     success_url = "/"
     fields = ['name', 'value', 'link', 'image']

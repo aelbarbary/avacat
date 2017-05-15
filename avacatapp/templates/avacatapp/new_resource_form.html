@@ -1,0 +1,32 @@
+{% load static %}
+
+<head>
+	<meta charset="UTF-8">
+	<title>Search Bar Animation</title>
+  <link rel="stylesheet" href="{% static "css/resource-form.css" %}">
+
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+    <!-- Custom Fonts -->
+    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<form method="post" enctype="multipart/form-data" id="contact"
+class="form" action="new" id="new-resource-form">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+		</button>
+	</div>
+	<div class="modal-body">
+	    <h3>something to remember ?</h3>
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <input type="submit" value="Submit" />
+	</div>
+</form>
+
+<script>
+	console.log({{form}});
+	var form_options = { target: '#modal-new', success: function() { } }
+	$('#new-resource-form').ajaxForm(form_options);
+</script>

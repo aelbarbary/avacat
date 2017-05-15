@@ -36,6 +36,8 @@ function loadSearchTerm(searchTerm)
 }
 
 function search(searchTerm) {
+  if (searchTerm == "")
+    return;
   console.log(searchTerm);
   event.preventDefault();
   var data = {
