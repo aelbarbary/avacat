@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'avacatapp'
+    'avacatapp',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -85,9 +86,12 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
          'NAME': 'avacat',
-         'HOST': os.environ['AVACAT_DB_HOST'],
-         'USER': os.environ['AVACAT_DB_USER'],
-         'PASSWORD': os.environ['AVACAT_DB_PASSWORD']
+         'HOST': 'localhost',
+        #  os.environ['AVACAT_DB_HOST'],
+         'USER': 'postgres',
+        #  os.environ['AVACAT_DB_USER'],
+         'PASSWORD': 'passw0rd'
+        #  os.environ['AVACAT_DB_PASSWORD']
      }
  }
 
@@ -137,8 +141,10 @@ STATICFILES_DIRS = [
 
 AWS_STORAGE_BUCKET_NAME = 'avacat'
 AWS_S3_HOST = "s3-us-west-2.amazonaws.com"
-AWS_ACCESS_KEY_ID = os.environ['AVACAT_S3_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = os.environ['AVACAT_S3_SECRET_KEY']
+AWS_ACCESS_KEY_ID = ''
+# os.environ['AVACAT_S3_ACCESS_KEY']
+AWS_SECRET_ACCESS_KEY = ''
+# os.environ['AVACAT_S3_SECRET_KEY']
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 STATIC_URL = '/static/'
@@ -156,3 +162,11 @@ AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'Cache-Control': 'max-age=94608000',
     }
+
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS=True
+SEND_BROKEN_LINK_EMAILS = True

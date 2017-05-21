@@ -9,8 +9,9 @@ from django.core import serializers
 from django.http import HttpRequest,HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 import json
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def index(request):
     searchTerm = request.GET.get('q', '')
     print(searchTerm)
