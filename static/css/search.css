@@ -12,7 +12,9 @@ body { no-repeat center center fixed; background-size:cover; box-sizing: content
 
 .search button:hover {background: #ff6600;color:#ffffff;}
 .search button:active {box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);}
-
+.container{
+  margin-top: 70px;
+}
 /*.search button:focus {outline: 0;}*/
 
 /*Resize the wrap to see the search bar change!*/
