@@ -106,7 +106,7 @@
 
 /* Product button and price */
 
-.product-list-vertical .product-details button{
+.product-list-vertical button{
     border-radius: 2px;
     background-color:  #87bae1;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
@@ -118,6 +118,10 @@
 
     width: 95px;
     height: 32px;
+
+    border: none;
+    outline:none;
+
 }
 
 .product-list-vertical .product-details .product-price{

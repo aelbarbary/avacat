@@ -11,7 +11,7 @@
 		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
 
 		<script src="http://malsup.github.com/jquery.form.js"></script>
-    <link rel="stylesheet" href="{% static "css/product-lists/product-list-basic.css" %}">
+    <link rel="stylesheet" href="{% static "css/product-lists/product-list-vertical.css" %}">
     <link rel="stylesheet" href="{% static "css/animate.css" %}">
 
     <!-- Custom Fonts -->
@@ -58,7 +58,10 @@
           </ul>
 					<form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
 						<div class="form-group">
-							<input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="Search..." onblur="search(document.getElementById('s').value)">
+							<input name="s" id="s" type="text" class="search-query form-control" autocomplete="off"
+							 placeholder="Search..."
+							 onblur="search(document.getElementById('s').value)"
+							 onkeypress="return runScript(event)">
 						</div>
 					</form>
 			</div>
@@ -89,7 +92,7 @@
 					</div>
 			</div>
 
-			<ul class="product-list-basic" id="searchResults" >
+			<ul class="product-list-vertical" id="searchResults" >
 
 			</ul>
 	 	</div>
@@ -107,15 +110,14 @@
 					</a>
 				{% templatetag openvariable %}/if{% templatetag closevariable %}
 
-				<h2><a href="#">${fields.name}</a></h2>
+				<h2>${fields.name}</h2>
 
 				<p class="product-description dont-break-out alert alert-info">
 					{% templatetag openvariable %}html fields.value{% templatetag closevariable %}
 					<br/>
 					<a href="${fields.link}" style="visibility: ${fields.link != "" ? 'visible' : 'hidden' }">
-						 more info
+						 ${fields.link}
 					</a>
-
 				</p>
 
 				<div class="resource-engagement">
@@ -143,6 +145,7 @@
 				</div>
 
 		</li>
+
   </script>
 
     <!-- jQuery -->
@@ -161,6 +164,14 @@
     <script src="{% static "js/search.js" %}"></script>
 
     <script src="{% static "js/require.js" %}"></script>
+		<script>
+		function runScript(e) {
+				if (e.keyCode == 13) {
+						search(document.getElementById('s').value);
+						return false;
+				}
+			}
+		</script>
 </body>
 </html>
 
