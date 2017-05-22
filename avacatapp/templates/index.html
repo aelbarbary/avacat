@@ -21,6 +21,8 @@
 </head>
 
 <body onload="loadSearchTerm('{{searchTerm}}')">
+
+
 	<div class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header">
           <button button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -64,31 +66,33 @@
 			</div>
   </div>
 
-	 <div class="container">
-		 	<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		 		<div class="modal-dialog">
-		 			<div class="modal-content">
-		 			</div>
-		 		</div>
-	 		</div>
+	<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
 
-		 	<div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		 		<div class="modal-dialog">
-		 			<div class="modal-content">
-		 			</div>
-		 		</div>
-		 	</div>
-			<ul class="product-list-basic" id="searchResults" >
-				<div  >
-						<div >
-							<input class="logo-button" type="image"
-							src="{% static "images/logo.png" %}" style="outline:none" />
-						</div>
+	<div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
 
-						<blockquote style="margin-bottom:10px;">
-							Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
-						</blockquote>
+	 <div class="container text-center">
+
+			<div class="row text-center" id="intro">
+					<div class="col-md-12 text-center">
+							<img class="animated" src="{% static "images/bg.jpg" %}" alt="" >
+							<blockquote style="margin-bottom:10px;">
+								Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
+							</blockquote>
 					</div>
+			</div>
+
+			<ul class="product-list-basic" id="searchResults" >
+
 			</ul>
 	 	</div>
 

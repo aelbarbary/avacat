@@ -50,6 +50,7 @@ function search(searchTerm) {
       success : function(json) {
         var searchResults = document.getElementById('searchResults');
         $('#searchResults').empty();
+        $('#intro').hide()
         json.forEach(function(hit) {
             $("#searchTemplate").tmpl(hit).appendTo("#searchResults");
 
