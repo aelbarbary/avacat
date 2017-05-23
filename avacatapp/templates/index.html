@@ -11,7 +11,7 @@
 		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
 
 		<script src="http://malsup.github.com/jquery.form.js"></script>
-    <link rel="stylesheet" href="{% static "css/product-lists/product-list-vertical.css" %}">
+    <link rel="stylesheet" href="{% static "css/searchresult.css" %}">
     <link rel="stylesheet" href="{% static "css/animate.css" %}">
 
     <!-- Custom Fonts -->
@@ -81,7 +81,7 @@
 		</div>
 	</div>
 
-	 <div class="container text-center">
+	 <div class="container">
 
 			<div class="row text-center" id="intro">
 					<div class="col-md-12 text-center">
@@ -92,48 +92,38 @@
 					</div>
 			</div>
 
-			<ul class="product-list-vertical" id="searchResults" >
+			<div class="row" id="searchResults" >
 
-			</ul>
+			</div>
 	 	</div>
 
 		<script id="searchTemplate" type="text/x-jQuery-tmpl">
-			<li>
-				{% templatetag openvariable %}if fields.image.indexOf("placeholder.png") == -1 {% templatetag closevariable %}
-					<a href="${fields.image}" class="product-photo" target="_blank">
-							<img src=${fields.image} height="130" alt="iPhone 6">
-					</a>
-				{% templatetag openvariable %}/if{% templatetag closevariable %}
-
-				<h3>${fields.name}</h3>
-
-				<p class="product-description dont-break-out alert alert-info">
-					{% templatetag openvariable %}html fields.value{% templatetag closevariable %}
-					<br/>
-					<a href="${fields.link}" style="visibility: ${fields.link != "" ? 'visible' : 'hidden' }">
-						 ${fields.link}
-					</a>
-				</p>
-
-				<div class="resource-engagement">
-						<span class="product-stars">
-								<a href="#">
-
-									<button onclick="like(${pk})" class="fa fa-thumbs-up ${fields.is_liked_by_user == true ? 'liked' : 'disliked' }" >
-										<label id="likes-${pk}"> ${fields.likes} </label>
-									</button>
-								</a>
-
-								<a  data-toggle="modal" href="edit/${pk}"
-								data-target="#modal-edit" title="edit item" data-tooltip>
-									<button class="fa fa-pencil">
-									<label>edit</label>
-									</button>
-								</a>
-
-						</span>
+			<div class="col-md-12">
+						<div class="well well-sm">
+								<div class="row">
+										<div class="col-xs-1 col-md-1 text-center">
+												<img src="${fields.image}" alt="bootsnipp"
+														class="img-rounded img-responsive" />
+										</div>
+										<div class="col-xs-9 col-md-9 section-box">
+												<h2>
+														${fields.name} <a href="#" target="_blank"><span class="glyphicon glyphicon-new-window">
+														</span></a>
+												</h2>
+												<p>
+													{% templatetag openvariable %}html fields.value{% templatetag closevariable %}
+												</p>
+												<hr />
+												<div class="row rating-desc">
+														<div class="col-md-12">
+																<a onclick="like(${pk}); return false;"><span class="glyphicon glyphicon-thumbs-up"></span></a>(${fields.likes})<span class="separator">|</span>
+																<a data-toggle="modal" href="edit/${pk}" data-target="#modal-edit" title="edit item" data-tooltip ><span class="glyphicon glyphicon-edit"></span> </a>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
 				</div>
-		</li>
   </script>
     <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

@@ -29,7 +29,6 @@ def search(request):
         r.value = r.value.replace('\n', '<br/>')
         r.likes = Like.objects.filter(resource_id = r.pk).count()
         r.is_liked_by_user = Like.objects.filter(user_id = request.user.id, resource_id = r.pk ).count() > 0
-        print(r.is_liked_by_user)
     data = serializers.serialize('json', resources)
     return HttpResponse(data, content_type='application/json')
 
@@ -55,6 +54,12 @@ class ResourceCreate(CreateView):
     template_name  ="avacatapp/new_resource_form.html"
     success_url = "/"
     fields = ['name', 'value', 'link', 'image']
+
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.last_modified_by = self.request.user
+        object.save()
+        return super(ResourceCreate, self).form_valid(form)
 
 class ResourceUpdate(UpdateView):
     model = Resource

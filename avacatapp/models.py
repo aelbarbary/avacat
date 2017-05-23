@@ -9,9 +9,10 @@ class Resource(models.Model):
    link = models.CharField(max_length=500, blank=True)
    created_date = models.DateField(default=timezone.now)
    image = models.ImageField(upload_to = "images", default = 'images/placeholder.png')
-   created_by_user = models.ForeignKey(User)
+   last_modified_by = models.ForeignKey(User)
    likes = models.IntegerField(default=0)
    is_liked_by_user = models.BooleanField(default=False)
+
 
 class Like(models.Model):
     user = models.ForeignKey(User)
