@@ -10,6 +10,5 @@ urlpatterns = [
     url(r'^new$',views.ResourceCreate.as_view(),name='resource_new',),
     url(r'^edit/(?P<pk>\d+)$', views.ResourceUpdate.as_view(), name='resource_edit'),
     url(r'^like/(?P<id>\d+)$', view=views.like, name ='like_resourse'),
-    url(r'^dislike/(?P<id>\d+)$', view=views.dislike, name ='dislike_resourse'),
     url(r'^accounts/profile/$', view=views.index, name ='dislike_resourse')
 ]

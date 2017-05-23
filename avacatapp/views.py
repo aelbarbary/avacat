@@ -27,25 +27,28 @@ def search(request):
     for r in resources:
         r.image = r.image.url
         r.value = r.value.replace('\n', '<br/>')
-        r.likes = Like.objects.filter(resource = r).count()
-        r.dislikes = 0
+        r.likes = Like.objects.filter(resource_id = r.pk).count()
+        r.is_liked_by_user = Like.objects.filter(user_id = request.user.id, resource_id = r.pk ).count() > 0
+        print(r.is_liked_by_user)
     data = serializers.serialize('json', resources)
     return HttpResponse(data, content_type='application/json')
 
 def like(request, id):
-    print(id)
     resource = Resource.objects.get(pk=id)
-    # obj.likes = obj.likes + 1;
-    # obj.save()
-    Like.create(request.user, resource)
-    return HttpResponse()
+    try:
+        likeObject = Like.objects.get(user_id = request.user.id, resource_id = id )
+    except Exception as e:
+         likeObject = None
+         print(str(e))
+    if likeObject == None:
+        print("adding");
+        Like.create(request.user, resource)
+    else:
+        print("removing")
+        Like.remove(request.user, resource)
 
-def dislike(request, id):
-    print(id)
-    obj = Resource.objects.get(pk=id)
-    obj.dislikes = obj.dislikes + 1;
-    obj.save()
-    return HttpResponse()
+    number_of_likes = Like.objects.filter(resource=resource).count()
+    return HttpResponse(number_of_likes)
 
 class ResourceCreate(CreateView):
     model = Resource

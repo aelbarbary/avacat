@@ -3,9 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from .search import ResourceIndex
 
-# Create your models here.
-
-# Blogpost to be indexed into ElasticSearch
 class Resource(models.Model):
    name = models.CharField(max_length=200)
    value =  models.TextField(max_length=8000)
@@ -13,6 +10,8 @@ class Resource(models.Model):
    created_date = models.DateField(default=timezone.now)
    image = models.ImageField(upload_to = "images", default = 'images/placeholder.png')
    created_by_user = models.ForeignKey(User)
+   likes = models.IntegerField(default=0)
+   is_liked_by_user = models.BooleanField(default=False)
 
 class Like(models.Model):
     user = models.ForeignKey(User)
@@ -21,6 +20,12 @@ class Like(models.Model):
 
     @classmethod
     def create(cls, user, resource ):
-        book = cls(user=user, resource = resource)
-        book.save()
-        return book
+        like = cls(user=user, resource = resource)
+        like.save()
+        return like
+
+    @classmethod
+    def remove(cls, user, resource ):
+        like = Like.objects.get(user=user, resource = resource)
+        like.delete()
+        return like

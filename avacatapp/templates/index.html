@@ -97,20 +97,15 @@
 			</ul>
 	 	</div>
 
-
-
-	<!-- Modal -->
-
-
-	<script id="searchTemplate" type="text/x-jQuery-tmpl">
-	<li>
+		<script id="searchTemplate" type="text/x-jQuery-tmpl">
+			<li>
 				{% templatetag openvariable %}if fields.image.indexOf("placeholder.png") == -1 {% templatetag closevariable %}
 					<a href="${fields.image}" class="product-photo" target="_blank">
 							<img src=${fields.image} height="130" alt="iPhone 6">
 					</a>
 				{% templatetag openvariable %}/if{% templatetag closevariable %}
 
-				<h2>${fields.name}</h2>
+				<h3>${fields.name}</h3>
 
 				<p class="product-description dont-break-out alert alert-info">
 					{% templatetag openvariable %}html fields.value{% templatetag closevariable %}
@@ -123,14 +118,9 @@
 				<div class="resource-engagement">
 						<span class="product-stars">
 								<a href="#">
-									<button onclick="like(${pk})" class="fa fa-thumbs-up">
-										<label id="likes-${pk}"> ${fields.likes} </label>
-									</button>
-								</a>
 
-								<a href="#">
-									<button onclick="dislike(${pk})" class="fa fa-thumbs-down">
-										<label id="dislikes-${pk}"> ${fields.dislikes} </label>
+									<button onclick="like(${pk})" class="fa fa-thumbs-up ${fields.is_liked_by_user == true ? 'liked' : 'disliked' }" >
+										<label id="likes-${pk}"> ${fields.likes} </label>
 									</button>
 								</a>
 
@@ -143,26 +133,14 @@
 
 						</span>
 				</div>
-
 		</li>
-
   </script>
-
-    <!-- jQuery -->
-
-    <!-- Bootstrap Core JavaScript -->
     <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
-
-    <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
     <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-
     <script src="{% static "js/elasticsearch.jquery.min.js" %}"></script>
     <script src="{% static "js/elasticsearch.min.js" %}"></script>
     <script src="{% static "js/search.js" %}"></script>
-
     <script src="{% static "js/require.js" %}"></script>
 		<script>
 		function runScript(e) {
@@ -174,21 +152,3 @@
 		</script>
 </body>
 </html>
-
-
-<!-- {% if results %}
-              <ul class="product-list-vertical">
-                {% for result in results %}
-                <li style="background:{% if event.gender %}#ffbff7{% else %}#c3e2fb{% endif %}">
-
-                  <div>
-                      {{ result.author }} | {{result.title}} | {{result.text}}
-                  </div>
-
-                </li>
-                {% endfor %}
-              </ul>
-
-              {% else %}
-                  <p style="text-align: center; color: red;">No result</p>
-              {% endif %} -->
