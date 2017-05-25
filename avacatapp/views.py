@@ -47,6 +47,7 @@ def like(request, id):
         Like.remove(request.user, resource)
 
     number_of_likes = Like.objects.filter(resource=resource).count()
+    print("number_of_likes:" + str(number_of_likes))
     return HttpResponse(number_of_likes)
 
 class ResourceCreate(CreateView):

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+/*@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body { no-repeat center center fixed; background-size:cover; box-sizing: content-box;}
 
@@ -14,7 +14,7 @@ body { no-repeat center center fixed; background-size:cover; box-sizing: content
 .search button:active {box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);}
 .container{
   margin-top: 70px;
-}
+}*/
 /*.search button:focus {outline: 0;}*/
 
 /*Resize the wrap to see the search bar change!*/
@@ -30,12 +30,12 @@ body { no-repeat center center fixed; background-size:cover; box-sizing: content
     border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
 }
 
-.logo-button{
+/*.logo-button{
   margin:0px auto;
   width: 150px;
   button:focus {outline:none; !important; }
 
-}
+}*/
 
 .add-resource{
   display: block;
@@ -95,8 +95,24 @@ color: #383838;
 
 .liked{
   color : orange;
+  cursor: pointer;
 }
 
 .disliked{
-  color: white;
+  color: gray;
+  cursor: pointer;
+}
+
+.liked:hover {
+    color: orange;
+    text-decoration: none;
+}
+
+.disliked:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+.search-query{
+  width: 600px !important;
 }

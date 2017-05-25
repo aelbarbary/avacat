@@ -1,138 +1,222 @@
 {% load static %}
 
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>ava-cat</title>
-	<link rel="stylesheet" href="{% static "css/resource-form.css" %}">
-  <link rel="stylesheet" href="{% static "css/search.css" %}">
-    <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-		<script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
-		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
 
-		<script src="http://malsup.github.com/jquery.form.js"></script>
-    <link rel="stylesheet" href="{% static "css/searchresult.css" %}">
-    <link rel="stylesheet" href="{% static "css/animate.css" %}">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ava-cat</title>
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="{% static "css/freelancer.css" %}"  rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/search.css" %}">
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/product-lists/product-list-vertical.css" %}">
 
     <!-- Custom Fonts -->
     <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .effect {
+          width: 0px;
+          height: 0px;
+          border-radius: 50%;
+          background-image: url('{% static 'images/logo.png' %}');
+          padding: 166px;
+          opacity: 1;
+          transition: 1s;
+      }
+
+      .effect:hover {
+        opacity: 1;
+        border-radius: 50%;
+        padding-right: 200px;
+        transform: rotate(360deg);
+        background-image: url('{% static 'images/tamkeengroup.png' %}');
+      }
+
+    </style>
+
 </head>
 
-<body onload="loadSearchTerm('{{searchTerm}}')">
+<body id="page-top" class="index" onload="document.getElementById('s').focus(); loadSearchTerm('{{searchTerm}}')">
 
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">
+                  <img style="margin-top:-20px" src="{% static "images/favicon.png" %}">
+                </a>
+            </div>
 
-	<div class="navbar navbar-default navbar-fixed-top">
-      <div class="navbar-header">
-          <button button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
-              <img style="max-width:100px; margin-top: -7px;"
-                   src="{% static "images/favicon.png" %}">
-          </a>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+
+                    <li class="page-scroll">
+                      <form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
+                        <div class="form-group">
+                          <input name="s" id="s" type="text" class="search-query form-control" autocomplete="off"
+                           placeholder="Search..."
+                           onblur="search(document.getElementById('s').value)"
+                           onkeypress="return runScript(event)">
+                        </div>
+                      </form>
+                    </li>
+                    <li class="page-scroll">
+                      <a  data-toggle="modal" href="new"
+                        data-target="#modal-new" title="edit item" data-tooltip>
+                          New memory
+                      </a>
+                    </li>
+                    <!-- <li class="page-scroll" style="background-color:orange">
+                        <a href="{{ request.user.is_authenticated|yesno:"#,/accounts/login,"  }}">{{ user_text }}</a>
+                    </li> -->
+                    <li class="page-scroll dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ user.get_username }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <!-- <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
+                            <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
+                            <li class="divider"></li> -->
+                            <li class="page-scroll"><a href="/accounts/logout" style="color:black"> <i class="icon-off"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li> -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+
+     <div class="container results" >
+        <div class="row text-center" id="intro">
+            <div class="col-md-12 text-center">
+                <img class="animated" src="{% static "images/bg.png" %}" alt="" >
+                <blockquote style="margin-bottom:10px;">
+                  Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="row" id="searchResults" >
+
+        </div>
       </div>
 
-      <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-              <li class="active">
-								<a  data-toggle="modal" href="new"
-									data-target="#modal-new" title="edit item" data-tooltip>
-										New memory
-								</a>
-							</li>
-          </ul>
-					<ul class="nav pull-right">
-                  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ user.get_username }} <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                          <!-- <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
-                          <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
-                          <li class="divider"></li> -->
-                          <li><a href="/accounts/logout"><i class="icon-off"></i> Logout</a></li>
-                      </ul>
-                  </li>
-          </ul>
-					<form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
-						<div class="form-group">
-							<input name="s" id="s" type="text" class="search-query form-control" autocomplete="off"
-							 placeholder="Search..."
-							 onblur="search(document.getElementById('s').value)"
-							 onkeypress="return runScript(event)">
-						</div>
-					</form>
-			</div>
-  </div>
+      <script id="searchTemplate" type="text/x-jQuery-tmpl">
+        <div class="col-md-12">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-xs-1 col-md-1 text-center">
+                          <a href="${fields.image}" target="_blank">
+                            <img src="${fields.image}" alt="bootsnipp"
+                              class="img-rounded img-responsive" />
+                          </a>
+                      </div>
+                      <div class="col-xs-9 col-md-9 section-box">
+                          <h2>
+                              ${fields.name}
+                              <a href="#" target="_blank">
+                              <!-- <span class="glyphicon glyphicon-new-window">
+                                  </span>-->
+                              </a>
+                          </h2>
+                          <p class="dont-break-out">
+                            {% templatetag openvariable %}html fields.value{% templatetag closevariable %}
+                          </p>
+                          <hr />
+                          <div class="row rating-desc">
+                              <div class="col-md-12">
+                                  <a onclick="like(${pk}); return false;" id="thumbs-up-${pk}" class="${fields.is_liked_by_user ? 'liked' : 'disliked'}">
+                                    <span class="glyphicon glyphicon-thumbs-up">
+                                    </span>
+                                  </a><label id="likes-${pk}">${fields.likes}</label>
+                                  <span class="separator">|</span>
+                                  <a data-toggle="modal" href="edit/${pk}" data-target="#modal-edit" title="edit item" data-tooltip >
+                                    <span class="glyphicon glyphicon-edit">
+                                    </span>
 
-	<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			</div>
-		</div>
-	</div>
 
-	<div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			</div>
-		</div>
-	</div>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </script>
 
-	 <div class="container">
+    <!-- Footer -->
 
-			<div class="row text-center" id="intro">
-					<div class="col-md-12 text-center">
-							<img class="animated" src="{% static "images/bg.png" %}" alt="" >
-							<blockquote style="margin-bottom:10px;">
-								Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
-							</blockquote>
-					</div>
-			</div>
 
-			<div class="row" id="searchResults" >
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
 
-			</div>
-	 	</div>
 
-		<script id="searchTemplate" type="text/x-jQuery-tmpl">
-			<div class="col-md-12">
-						<div class="well well-sm">
-								<div class="row">
-										<div class="col-xs-1 col-md-1 text-center">
-												<img src="${fields.image}" alt="bootsnipp"
-														class="img-rounded img-responsive" />
-										</div>
-										<div class="col-xs-9 col-md-9 section-box">
-												<h2>
-														${fields.name} <a href="#" target="_blank"><span class="glyphicon glyphicon-new-window">
-														</span></a>
-												</h2>
-												<p>
-													{% templatetag openvariable %}html fields.value{% templatetag closevariable %}
-												</p>
-												<hr />
-												<div class="row rating-desc">
-														<div class="col-md-12">
-																<a onclick="like(${pk}); return false;"><span class="glyphicon glyphicon-thumbs-up"></span></a>(${fields.likes})<span class="separator">|</span>
-																<a data-toggle="modal" href="edit/${pk}" data-target="#modal-edit" title="edit item" data-tooltip ><span class="glyphicon glyphicon-edit"></span> </a>
-														</div>
-												</div>
-										</div>
-								</div>
-						</div>
-				</div>
-  </script>
+    <!-- Bootstrap Core JavaScript -->
     <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+
+    <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
     <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-    <script src="{% static "js/elasticsearch.jquery.min.js" %}"></script>
-    <script src="{% static "js/elasticsearch.min.js" %}"></script>
+<script src="{% static "js/require.js" %}"></script>
     <script src="{% static "js/search.js" %}"></script>
-    <script src="{% static "js/require.js" %}"></script>
-		<script>
+
+    <script>
+    $(function() {
+        $("#s").focus();
+    });
 		function runScript(e) {
 				if (e.keyCode == 13) {
 						search(document.getElementById('s').value);
@@ -141,4 +225,5 @@
 			}
 		</script>
 </body>
+
 </html>

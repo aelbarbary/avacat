@@ -70,8 +70,9 @@ function like(id) {
       type : "GET",
       datatype: 'json',
       success : function(likes) {
+
         $("#likes-" + id).text(likes);
-        $("#likes-" + id).toggleClass('liked disliked');
+        $("#thumbs-up-" + id).toggleClass('liked disliked');
       },
       error : function(xhr,errmsg,err) {
           $('#answer-error-' + id).show();
