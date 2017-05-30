@@ -21,13 +21,9 @@
     <!-- Theme CSS -->
     <link href="{% static "css/freelancer.css" %}"  rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/search.css" %}">
+    <link rel="stylesheet" href="{% static "css/resource-form.css" %}">
     <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
 		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
-    <link rel="stylesheet" href="{% static "css/product-lists/product-list-vertical.css" %}">
-
-    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <style>
       .effect {
@@ -145,7 +141,7 @@
                               <!-- <span class="glyphicon glyphicon-new-window">
                                   </span>-->
                               </a>
-                          </h3>
+                          </h2>
                           <p class="dont-break-out">
                             {% templatetag openvariable %}html fields.value{% templatetag closevariable %}
                           </p>
