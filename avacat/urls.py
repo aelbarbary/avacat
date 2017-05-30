@@ -21,5 +21,5 @@ from django.conf import settings
 urlpatterns = [
     url(r'', include('avacatapp.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('registration.urls'))
+    url(r'^accounts/', include('registration.backends.simple.urls'))
 ]

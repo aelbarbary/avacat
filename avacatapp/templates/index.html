@@ -25,17 +25,10 @@
 		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
     <link rel="stylesheet" href="{% static "css/product-lists/product-list-vertical.css" %}">
 
-    <!-- Custom Fonts -->
     <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <style>
       .effect {
           width: 0px;
@@ -61,10 +54,9 @@
 
 <body id="page-top" class="index" onload="document.getElementById('s').focus(); loadSearchTerm('{{searchTerm}}')">
 
-    <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
@@ -74,7 +66,6 @@
                 </a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
@@ -97,26 +88,15 @@
                           New memory
                       </a>
                     </li>
-                    <!-- <li class="page-scroll" style="background-color:orange">
-                        <a href="{{ request.user.is_authenticated|yesno:"#,/accounts/login,"  }}">{{ user_text }}</a>
-                    </li> -->
                     <li class="page-scroll dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ user.get_username }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <!-- <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
-                            <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
-                            <li class="divider"></li> -->
                             <li class="page-scroll"><a href="/accounts/logout" style="color:black"> <i class="icon-off"></i> Logout</a></li>
                         </ul>
                     </li>
-                    <!-- <li class="page-scroll">
-                        <a href="#contact">Contact</a>
-                    </li> -->
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
 
     <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -159,13 +139,13 @@
                           </a>
                       </div>
                       <div class="col-xs-9 col-md-9 section-box">
-                          <h2>
+                          <h3>
                               ${fields.name}
                               <a href="#" target="_blank">
                               <!-- <span class="glyphicon glyphicon-new-window">
                                   </span>-->
                               </a>
-                          </h2>
+                          </h3>
                           <p class="dont-break-out">
                             {% templatetag openvariable %}html fields.value{% templatetag closevariable %}
                           </p>

@@ -29,6 +29,7 @@ def search(request):
         r.value = r.value.replace('\n', '<br/>')
         r.likes = Like.objects.filter(resource_id = r.pk).count()
         r.is_liked_by_user = Like.objects.filter(user_id = request.user.id, resource_id = r.pk ).count() > 0
+    resources.sort(key=lambda x: x.likes, reverse=True)  
     data = serializers.serialize('json', resources)
     return HttpResponse(data, content_type='application/json')
 
