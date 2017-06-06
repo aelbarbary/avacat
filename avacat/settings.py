@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'avacatapp',
-    'registration'
+    'registration',
+    "sslserver",
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS=True
 SEND_BROKEN_LINK_EMAILS = True
 LOGIN_REDIRECT_URL = '/'
+
+SESSION_COOKIE_AGE=2592000

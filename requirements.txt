@@ -4,3 +4,4 @@ Pillow
 elasticsearch-dsl
 boto
 django-storages
+django-registration

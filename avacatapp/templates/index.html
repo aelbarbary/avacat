@@ -5,137 +5,157 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Ava-cat</title>
-    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
-    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+  <title>Ava-cat</title>
+  <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+  <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="{% static "/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
-    <!-- Theme CSS -->
-    <link href="{% static "css/freelancer.css" %}"  rel="stylesheet">
-    <link rel="stylesheet" href="{% static "css/search.css" %}">
-    <link rel="stylesheet" href="{% static "css/resource-form.css" %}">
-    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
-		<script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
+  <!-- Theme CSS -->
+  <link href="{% static "css/avacat.css" %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/search.css" %}">
+  <link rel="stylesheet" href="{% static "css/resource-form.css" %}">
 
-    <style>
-      .effect {
-          width: 0px;
-          height: 0px;
-          border-radius: 50%;
-          background-image: url('{% static 'images/logo.png' %}');
-          padding: 166px;
-          opacity: 1;
-          transition: 1s;
-      }
-
-      .effect:hover {
-        opacity: 1;
-        border-radius: 50%;
-        padding-right: 200px;
-        transform: rotate(360deg);
-        background-image: url('{% static 'images/tamkeengroup.png' %}');
-      }
-
-    </style>
+  <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "vendor/jquery/jquery.tmpl.min.js" %}"></script>
 
 </head>
 
 <body id="page-top" class="index" onload="document.getElementById('s').focus(); loadSearchTerm('{{searchTerm}}')">
 
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-        <div class="container">
-
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">
+        <a class="navbar-brand" href="#page-top">
                   <img style="margin-top:-20px" src="{% static "images/favicon.png" %}">
                 </a>
-            </div>
+      </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
 
-                    <li class="page-scroll">
-                      <form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
-                        <div class="form-group">
-                          <input name="s" id="s" type="text" class="search-query form-control" autocomplete="off"
-                           placeholder="Search..."
-                           onblur="search(document.getElementById('s').value)"
-                           onkeypress="return runScript(event)">
-                        </div>
-                      </form>
-                    </li>
-                    <li class="page-scroll">
-                      <a  data-toggle="modal" href="new"
-                        data-target="#modal-new" title="edit item" data-tooltip>
+          <li class="page-scroll">
+            <form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
+              <div class="form-group">
+                <input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="Search..." onblur="search(document.getElementById('s').value)" onkeypress="return runScript(event)">
+              </div>
+            </form>
+          </li>
+          <li class="page-scroll">
+            <a data-toggle="modal" href="new" data-target="#modal-new" title="edit item" data-tooltip>
                           New memory
                       </a>
-                    </li>
-                    <li class="page-scroll dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ user.get_username }} <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="page-scroll"><a href="/accounts/logout" style="color:black"> <i class="icon-off"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
+          </li>
+          <li class="page-scroll dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{ user.get_username }} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="page-scroll"><a href="/accounts/logout" style="color:black"> <i class="icon-off"></i> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
+  <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
       </div>
     </div>
+  </div>
 
-     <div class="container results" >
-        <div class="row text-center" id="intro">
-            <div class="col-md-12 text-center">
-                <img class="animated" src="{% static "images/bg.png" %}" alt="" >
-                <blockquote style="margin-bottom:10px;">
-                  Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
-                </blockquote>
-            </div>
-        </div>
-
-        <div class="row" id="searchResults" >
-
-        </div>
+  <div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
       </div>
+    </div>
+  </div>
 
-      <script id="searchTemplate" type="text/x-jQuery-tmpl">
-        <div class="col-md-12">
-              <div class="well well-sm">
-                  <div class="row">
-                      <div class="col-xs-1 col-md-1 text-center">
-                          <a href="${fields.image}" target="_blank">
+  <div class="container results">
+    <div class="row text-center" id="intro">
+      <div class="col-md-12 text-center">
+        <img class="animated" src="{% static "images/bg.png" %}" alt="">
+        <blockquote style="margin-bottom:10px;">
+          Cats have short-term memory ... so is ava-cat ... it does not remember out of date stuff.
+        </blockquote>
+      </div>
+      <section id="portfolio">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 portfolio-item">
+              <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                <div class="caption">
+                  <div class="caption-content">
+                    <h3>SIMPLE</h3>
+                    <p "">
+                      avacat is very simple and fast in retrieving important information
+                    </p>
+                  </div>
+                </div>
+                <img src="{% static "images/simple.png" %}" class="img-responsive" alt="Cabin">
+              </a>
+            </div>
+            <div class="col-sm-4 portfolio-item">
+              <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                <div class="caption">
+                  <div class="caption-content">
+                    <h3>Helpful</h3>
+                    <p "">
+                      avacat helps you find what you are looking for quickly
+                    </p>
+                  </div>
+                </div>
+                <img src="{% static "images/helpful.png" %}" class="img-responsive" alt="Slice of cake">
+              </a>
+            </div>
+            <div class="col-sm-4 portfolio-item">
+              <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                <div class="caption">
+                  <div class="caption-content">
+                    <h3>INTERACTIVE</h3>
+                    <p "">
+                      avacat utilizes user' interactions to detemine what matters
+                    </p>
+                  </div>
+                </div>
+                <img src="{% static "images/interactive.png" %}" class="img-responsive" alt="Circus tent">
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="row" id="searchResults">
+
+    </div>
+  </div>
+
+  <script id="searchTemplate" type="text/x-jQuery-tmpl">
+    <div class="col-md-12">
+      <div class="well well-sm">
+        <div class="row">
+          <div class="col-xs-1 col-md-1 text-center">
+            <a href="${fields.image}" target="_blank">
                             <img src="${fields.image}" alt="bootsnipp"
                               class="img-rounded img-responsive" />
                           </a>
-                      </div>
-                      <div class="col-xs-9 col-md-9 section-box">
-                          <h3>
+          </div>
+          <div class="col-xs-9 col-md-9 section-box">
+            <h3>
                               ${fields.name}
                               <a href="#" target="_blank">
                               <!-- <span class="glyphicon glyphicon-new-window">
@@ -200,6 +220,7 @@
 				}
 			}
 		</script>
+
 </body>
 
 </html>
