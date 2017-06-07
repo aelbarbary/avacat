@@ -52,6 +52,7 @@ function search(searchTerm) {
         $('#searchResults').empty();
         $('#intro').hide()
         json.forEach(function(hit) {
+            hit.fields.value = urlify(hit.fields.value);
             $("#searchTemplate").tmpl(hit).appendTo("#searchResults");
 
         });
@@ -62,6 +63,15 @@ function search(searchTerm) {
       }
   });
 };
+
+function urlify(text) {
+    var urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+    return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+    })
+    // or alternatively
+    // return text.replace(urlRegex, '<a href="$1">$1</a>')
+}
 
 function like(id) {
   event.preventDefault();
