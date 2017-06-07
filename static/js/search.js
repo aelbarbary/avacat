@@ -1,64 +1,55 @@
-// function search(searchTerm) {
-//   event.preventDefault();
-//   console.log(searchTerm);
-//
-//   var client = new $.es.Client({
-//     hosts: '192.168.99.100:32771'
-//   });
-//
-//   client.search({
-//   index: 'avacat',
-//   type: 'resource_index',
-//   body: {
-//     query: {
-//       match: {
-//         name: searchTerm
-//       }
-//     }
-//   }
-// }).then(function (resp) {
-//     var hits = resp.hits.hits;
-//     var searchResults = document.getElementById('searchResults');
-//     $('#searchResults').empty();
-//     hits.forEach(function(hit) {
-//         $("#searchTemplate").tmpl(hit).appendTo("#searchResults");
-//
-//     });
-//
-// }, function (err) {
-//     console.trace(err.message);
-// });
-// };
 function loadSearchTerm(searchTerm)
 {
-  $('#search-term').val(searchTerm);
+  $('#s').val(searchTerm);
   search(searchTerm);
 }
 
-function search(searchTerm) {
+function updateSearchTerm() {
+  $('#searchResults').empty();
+  $('#pagination-id').val(0);
+  var url = "http://localhost:8001?q=";
+  url += $('#s').val();
+  window.location = url;
+}
+
+function search() {
+  var searchTerm = $('#s').val();
+  console.log("searchTerm:" + searchTerm);
   if (searchTerm == "")
+  {
+    $('#intro').show();
     return;
-  console.log(searchTerm);
+  }
   event.preventDefault();
+
+  page = parseInt($('#pagination-id').val());
+  $('#load-id').prop("disabled", true);
+  $('#load-id').text("Loading ...");
+
+  console.log("page:" + page);
   var data = {
-    searchTerm : searchTerm
+    searchTerm : searchTerm,
+    page: page
   };
   $.ajax({
       url : "search/", // the endpoint
       type : "POST", // http method
       data : JSON.stringify(data),
       success : function(json) {
+        console.log("searching");
         var searchResults = document.getElementById('searchResults');
-        $('#searchResults').empty();
-        $('#intro').hide()
+        // $('#searchResults').empty();
+        $('#intro').hide();
         json.forEach(function(hit) {
             hit.fields.value = urlify(hit.fields.value);
             $("#searchTemplate").tmpl(hit).appendTo("#searchResults");
-
         });
+        $('#load-id').text("Load more");
+        $('#pagination-id').val(page + 1);
+        $('#load-id').prop("disabled", false);
       },
       error : function(xhr,errmsg,err) {
-          $('#answer-error-' + id).show();
+          $('#load-id').replaceWith("<p>No more data</p>");
           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
       }
   });

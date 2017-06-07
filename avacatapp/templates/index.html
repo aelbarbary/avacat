@@ -50,7 +50,7 @@
           <li class="page-scroll">
             <form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
               <div class="form-group">
-                <input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="Search..." onblur="search(document.getElementById('s').value)" onkeypress="return runScript(event)">
+                <input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="Search..." onkeypress="return runScript(event); ">
               </div>
             </form>
           </li>
@@ -85,7 +85,7 @@
   </div>
 
   <div class="container results">
-    <div class="row text-center" id="intro">
+    <div class="row text-center" id="intro" style="display:none;">
       <div class="col-md-12 text-center">
         <img class="animated" src="{% static "images/bg.png" %}" alt="">
         <blockquote style="margin-bottom:10px;">
@@ -127,7 +127,7 @@
                   <div class="caption-content">
                     <h3>INTERACTIVE</h3>
                     <p "">
-                      avacat utilizes user' interactions to detemine what matters
+                      avacat utilizes users interactions to determine what really matters
                     </p>
                   </div>
                 </div>
@@ -142,6 +142,8 @@
     <div class="row" id="searchResults">
 
     </div>
+    <div><input type='hidden' id='pagination-id' value='1'></div>
+    <button id='load-id' type='submit'>Show</button>
   </div>
 
   <script id="searchTemplate" type="text/x-jQuery-tmpl">
@@ -215,10 +217,14 @@
     });
 		function runScript(e) {
 				if (e.keyCode == 13) {
-						search(document.getElementById('s').value);
+						updateSearchTerm(); 
 						return false;
 				}
 			}
+
+      $("#load-id").click(function(){
+        search();
+      });
 		</script>
 
 </body>

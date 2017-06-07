@@ -10,6 +10,7 @@ from django.http import HttpRequest,HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 import json
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def index(request):
@@ -23,14 +24,19 @@ def search(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode)
     searchTerm = body['searchTerm']
+    page = body['page']
+    print("page:" + str(page))
+
     resources = list(Resource.objects.filter(name__icontains = searchTerm))
     for r in resources:
         r.image = r.image.url
         r.value = r.value.replace('\n', '<br/>')
         r.likes = Like.objects.filter(resource_id = r.pk).count()
         r.is_liked_by_user = Like.objects.filter(user_id = request.user.id, resource_id = r.pk ).count() > 0
-    resources.sort(key=lambda x: x.likes, reverse=True)  
-    data = serializers.serialize('json', resources)
+    resources.sort(key=lambda x: x.likes, reverse=True)
+    paginator = Paginator(resources, 10)
+    paged_resources = paginator.page(page)
+    data = serializers.serialize('json', paged_resources)
     return HttpResponse(data, content_type='application/json')
 
 def like(request, id):
