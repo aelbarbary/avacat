@@ -11,6 +11,8 @@ from django.core.urlresolvers import reverse_lazy
 import json
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import TrigramSimilarity
 
 @login_required
 def index(request):
@@ -27,7 +29,10 @@ def search(request):
     page = body['page']
     print("page:" + str(page))
 
-    resources = list(Resource.objects.filter(name__icontains = searchTerm))
+    resources = list(Resource.objects.annotate(
+             similarity=TrigramSimilarity('name', searchTerm))
+             .filter(similarity__gt=0.1).order_by('-similarity'))
+             
     for r in resources:
         r.view_count += 1
         r.save()
