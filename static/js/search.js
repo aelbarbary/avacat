@@ -6,10 +6,12 @@ function loadSearchTerm(searchTerm)
 
 function updateSearchTerm() {
   $('#searchResults').empty();
-  $('#pagination-id').val(0);
-  var url = "http://localhost:8001?q=";
+  $('#pagination-id').val(1);
+  var url = document.location.protocol + "//" + document.location.host + "/?q=";
+  console.log(url);
   url += $('#s').val();
-  window.location = url;
+  window.history.pushState("object or string", "Title", url);
+  search();
 }
 
 function search() {

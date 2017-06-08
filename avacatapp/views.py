@@ -29,11 +29,14 @@ def search(request):
 
     resources = list(Resource.objects.filter(name__icontains = searchTerm))
     for r in resources:
+        r.view_count += 1
+        r.save()
         r.image = r.image.url
         r.value = r.value.replace('\n', '<br/>')
         r.likes = Like.objects.filter(resource_id = r.pk).count()
         r.is_liked_by_user = Like.objects.filter(user_id = request.user.id, resource_id = r.pk ).count() > 0
-    resources.sort(key=lambda x: x.likes, reverse=True)
+
+    resources.sort(key=lambda x: [-x.likes, -x.view_count] )
     paginator = Paginator(resources, 10)
     paged_resources = paginator.page(page)
     data = serializers.serialize('json', paged_resources)

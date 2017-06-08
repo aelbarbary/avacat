@@ -175,11 +175,16 @@
                                     </span>
                                   </a><label id="likes-${pk}">${fields.likes}</label>
                                   <span class="separator">|</span>
+
+                                  <span class="glyphicon glyphicon-eye-open" title="views">
+                                  </span>
+                                  <label>${fields.view_count}</label>
+
+                                  <span class="separator">|</span>
+
                                   <a data-toggle="modal" href="edit/${pk}" data-target="#modal-edit" title="edit item" data-tooltip >
                                     <span class="glyphicon glyphicon-edit">
                                     </span>
-
-
                                   </a>
                               </div>
                           </div>
@@ -217,7 +222,7 @@
     });
 		function runScript(e) {
 				if (e.keyCode == 13) {
-						updateSearchTerm(); 
+						updateSearchTerm();
 						return false;
 				}
 			}

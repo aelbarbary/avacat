@@ -11,6 +11,7 @@ class Resource(models.Model):
    image = models.ImageField(upload_to = "images", default = 'images/placeholder.png')
    last_modified_by = models.ForeignKey(User)
    likes = models.IntegerField(default=0)
+   view_count = models.IntegerField(default=0)
    is_liked_by_user = models.BooleanField(default=False)
 
 
