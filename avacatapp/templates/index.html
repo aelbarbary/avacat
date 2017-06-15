@@ -20,7 +20,6 @@
 
   <!-- Theme CSS -->
   <link href="{% static "css/avacat.css" %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static "css/search.css" %}">
   <link rel="stylesheet" href="{% static "css/resource-form.css" %}">
 
   <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
@@ -143,7 +142,7 @@
 
     </div>
     <div><input type='hidden' id='pagination-id' value='1'></div>
-    <button id='load-id' type='submit'>Show</button>
+    <button id='loadMore' type='submit' style="display:none;">Show</button>
   </div>
 
   <script id="searchTemplate" type="text/x-jQuery-tmpl">
@@ -166,7 +165,13 @@
                           </h2>
                           <p class="dont-break-out">
                             {% templatetag openvariable %}html fields.value{% templatetag closevariable %}
+
                           </p>
+
+                          <a href=${fields.link} target="_blank">
+                            <p class="ellipses">${fields.link}</p>
+                          </a>
+
                           <hr />
                           <div class="row rating-desc">
                               <div class="col-md-12">
@@ -227,7 +232,7 @@
 				}
 			}
 
-      $("#load-id").click(function(){
+      $("#loadMore").click(function(){
         search();
       });
 		</script>

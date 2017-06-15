@@ -5,8 +5,8 @@ function loadSearchTerm(searchTerm)
 }
 
 function updateSearchTerm() {
-  $('#searchResults').empty();
-  $('#pagination-id').val(1);
+  resetSearchForm()
+
   var url = document.location.protocol + "//" + document.location.host + "/?q=";
   console.log(url);
   url += $('#s').val();
@@ -25,8 +25,8 @@ function search() {
   event.preventDefault();
 
   page = parseInt($('#pagination-id').val());
-  $('#load-id').prop("disabled", true);
-  $('#load-id').text("Loading ...");
+  $('#loadMore').prop("disabled", true);
+  $('#loadMore').text("Loading ...");
 
   console.log("page:" + page);
   var data = {
@@ -46,16 +46,34 @@ function search() {
             hit.fields.value = urlify(hit.fields.value);
             $("#searchTemplate").tmpl(hit).appendTo("#searchResults");
         });
-        $('#load-id').text("Load more");
-        $('#pagination-id').val(page + 1);
-        $('#load-id').prop("disabled", false);
+        if(json.length < 10)
+        {
+            $('#loadMore').hide();
+        }
+        else {
+            $('#loadMore').show();
+            $('#loadMore').text("Load more");
+            $('#loadMore').prop("disabled", false);
+            $('#pagination-id').val(page + 1);
+        }
+
       },
       error : function(xhr,errmsg,err) {
-          $('#load-id').replaceWith("<p>No more data</p>");
+          $('#loadMore').text("No more data");
+          $('#loadMore').prop("disabled", true);
           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
       }
   });
 };
+
+function resetSearchForm()
+{
+  $('#searchResults').empty();
+  $('#pagination-id').val(1);
+  $('#pagination-id').val(1);
+  $('#loadMore').text("Load more");
+  $('#loadMore').prop("disabled", false);
+}
 
 function urlify(text) {
     var urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
