@@ -12,23 +12,13 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qc(8epi3!wvzq6jc^cwuoammz3ry92#wfw0yd7atnym(utjw&g'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,33 +62,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'avacat.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
          'NAME': 'avacat',
-         'HOST': 'localhost',
-        #  os.environ['AVACAT_DB_HOST'],
-         'USER': 'postgres',
-        #  os.environ['AVACAT_DB_USER'],
-         'PASSWORD': 'passw0rd'
-        #  os.environ['AVACAT_DB_PASSWORD']
+         'HOST':  os.environ['AVACAT_DB_HOST'],
+         'USER':  os.environ['AVACAT_DB_USER'],
+         'PASSWORD': os.environ['AVACAT_DB_PASSWORD']
      }
  }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -116,9 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -130,9 +99,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -142,10 +108,8 @@ STATICFILES_DIRS = [
 
 AWS_STORAGE_BUCKET_NAME = 'avacat'
 AWS_S3_HOST = "s3-us-west-2.amazonaws.com"
-AWS_ACCESS_KEY_ID = ''
-# os.environ['AVACAT_S3_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = ''
-# os.environ['AVACAT_S3_SECRET_KEY']
+AWS_ACCESS_KEY_ID = os.environ['AVACAT_S3_ACCESS_KEY']
+AWS_SECRET_ACCESS_KEY = os.environ['AVACAT_S3_SECRET_KEY']
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 STATIC_URL = '/static/'

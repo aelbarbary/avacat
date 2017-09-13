@@ -32,7 +32,7 @@ def search(request):
     resources = list(Resource.objects.annotate(
              similarity=TrigramSimilarity( 'name', searchTerm)
              )
-             .filter(similarity__gt=0.15).order_by('-similarity'))
+             .filter(similarity__gt=0.05).order_by('-similarity'))
 
     for r in resources:
         r.view_count += 1
