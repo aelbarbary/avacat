@@ -1,7 +1,0 @@
-Django
-psycopg2
-Pillow
-elasticsearch-dsl
-boto
-django-storages
-django-registration
