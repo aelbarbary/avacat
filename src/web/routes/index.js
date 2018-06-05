@@ -12,6 +12,8 @@ import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
 
+import NewMemoryComponenet  from '../components/NewMemory';
+
 import SignUpContainer from '../../containers/SignUp';
 import SignUpComponent from '../components/SignUp';
 
@@ -74,6 +76,14 @@ const Index = () => (
       render={props => (
         <TemplateSidebar>
           <RecipesContainer {...props} Layout={RecipesComponent} />
+        </TemplateSidebar>
+      )}
+    />
+    <Route
+      path="/memory/new"
+      render={props => (
+        <TemplateSidebar>
+          <NewMemoryComponenet {...props} />
         </TemplateSidebar>
       )}
     />
