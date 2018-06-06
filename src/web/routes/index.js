@@ -6,7 +6,8 @@ import TemplateNothing from '../components/TemplateNothing';
 import TemplateSidebar from '../components/TemplateSidebar';
 
 // Routes
-import Home from '../components/Home';
+import HomeContainer from '../../containers/Home';
+import HomeComponent from '../components/Home';
 
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
@@ -35,7 +36,7 @@ const Index = () => (
       path="/"
       render={props => (
         <TemplateSidebar>
-          <Home {...props} />
+          <HomeContainer {...props} Layout={HomeComponent}/>
         </TemplateSidebar>
       )}
     />
