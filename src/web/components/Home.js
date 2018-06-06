@@ -20,13 +20,7 @@ class Home extends Component {
     this.state = {};
   }
 
-  // componentDidMount() {
-  //
-  //   console.log(memories);
-  //   var memoriesList = memories.map(memory => <li> {memory.key} </li>);
-  //   this.setState({memoriesList:memoriesList});
-  // }
-  render() {
+  componentWillMount() {
     const memories =  this.props.memories;
     console.log(memories);
     const memoriesList = memories.map(memory =>
@@ -37,7 +31,12 @@ class Home extends Component {
              <Button>Like</Button>
            </CardBody>
          </Card>
- );
+       );
+
+    this.setState({memoriesList:memoriesList});
+  }
+
+  render() {
 
     return (
       <div>
@@ -48,7 +47,7 @@ class Home extends Component {
         </Row>
         <Row>
           <CardGroup style={cardGroupStyle}>
-            {memoriesList}
+            {this.state.memoriesList}
           </CardGroup>
         </Row>
       </div>

@@ -17,29 +17,25 @@ class HomeContainer extends Component {
     if (Firebase === null) return () => new Promise(resolve => resolve());
 
     const ref = FirebaseRef.child(`memories`);
-
+    const { Layout } = this.props;
     ref.on("value", function(snapshot) {
       var memories = []
       snapshot.forEach( function(child){
         memories.push(child);
       });
-      
-      this.setState({memories: memories})
+      var memoriesList = <Layout memories={memories}/>
+      this.setState({memories: memoriesList})
     }.bind(this), function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
   }
 
   render() {
-    const { Layout } = this.props;
+    console.log(this.state.memories);
     return (
-      <Layout memories={this.state.memories}/>
+      this.state.memories
     );
   }
-
 }
-// const mapDispatchToProps = {
-//   getMemories,
-// };
 
 export default HomeContainer;
