@@ -45,12 +45,14 @@ class NewMemory extends Component {
 
     const ref = FirebaseRef.child(`memories`);
     const guid = this.guid()
-    ref.push({
+    var newRef = ref.push({
         key: this.state.memoryKey,
         value: this.state.memoryValue
       }
     );
 
+    var newDocRef = FirebaseRef.child('memories').doc(newRef);
+    console.log(newDocRef);
     this.setState({memoryKey: "", memoryValue:"", alertVisible: true});
 
   }
