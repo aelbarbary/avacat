@@ -51,10 +51,7 @@ class NewMemory extends Component {
       }
     );
 
-    var newDocRef = FirebaseRef.child('memories').doc(newRef);
-    console.log(newDocRef);
     this.setState({memoryKey: "", memoryValue:"", alertVisible: true});
-
   }
 
   onDismiss() {

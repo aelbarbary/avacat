@@ -62,7 +62,7 @@ class Home extends Component {
     return (
       <div>
         <Row>
-            <form className="search">
+            <form className="search cf">
               <input type="text" onChange={this.setSearchText.bind(this)} placeholder="Search"/>
             </form>
         </Row>
