@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import configureStore from '../store/index';
 import registerServiceWorker from './register-service-worker';
 import Routes from './routes/index';
-
+import 'babel-polyfill';
 // Components
 import Loading from './components/Loading';
 

@@ -29,6 +29,7 @@ import UpdateProfileComponent from '../components/UpdateProfile';
 
 import Error from '../components/Error';
 
+
 const Index = () => (
   <Switch>
     <Route
