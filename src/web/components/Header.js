@@ -51,6 +51,9 @@ class Header extends Component {
           <Link to="/" className="navbar-brand" style={{ color: '#FFF' }}>
             {Config.appName}
           </Link>
+          <Link to="/memory/new">
+            <i className="icon-notebook" /> <span>New Memory</span>
+          </Link>
           <NavbarToggler onClick={this.toggleDropDown} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
