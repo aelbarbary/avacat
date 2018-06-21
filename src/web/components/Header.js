@@ -13,7 +13,6 @@ import {
 import { Link, withRouter } from 'react-router-dom';
 import Config from '../../constants/config';
 import { SidebarNavItems } from './Sidebar';
-import logo from '../../images/logo.png'
 
 class Header extends Component {
   static propTypes = {
@@ -50,7 +49,7 @@ class Header extends Component {
       <header>
         <Navbar dark color="primary" expand="sm" className="fixed-top">
           <Link to="/" className="navbar-brand" style={{ color: '#FFF' }}>
-            <img scr="images/logo.png" />
+
             {Config.appName}
           </Link>
 
