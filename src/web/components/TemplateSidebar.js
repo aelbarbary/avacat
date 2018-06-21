@@ -11,7 +11,7 @@ const Template = ({ children }) => (
     <Member Layout={Header} />
     <Container fluid>
       <Row>
-        <Col className="px-sm-5 py-sm-5 ml-sm-auto">
+        <Col className="px-sm-5 py-sm-3 ml-sm-auto">
           {children}
           <Footer />
         </Col>

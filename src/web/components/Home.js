@@ -17,12 +17,12 @@ class Home extends Component {
            <CardBody>
              <CardTitle>{memory.val().key}</CardTitle>
              <CardText>{memory.val().value}</CardText>
-             <Button>Like</Button>
+
            </CardBody>
          </Card>
        );
 
-    this.setState({memoriesList:memoriesList});
+    this.setState({memoriesList: []});
   }
 
   setSearchText(event) {
@@ -39,7 +39,6 @@ class Home extends Component {
                 <CardBody>
                   <CardTitle>{memory.val().key}</CardTitle>
                   <CardText>{memory.val().value}</CardText>
-                  <Button>Like</Button>
                 </CardBody>
               </Card>
             ),

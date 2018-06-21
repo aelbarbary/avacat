@@ -13,6 +13,7 @@ import {
 import { Link, withRouter } from 'react-router-dom';
 import Config from '../../constants/config';
 import { SidebarNavItems } from './Sidebar';
+import logo from '../../images/logo.png'
 
 class Header extends Component {
   static propTypes = {
@@ -49,15 +50,14 @@ class Header extends Component {
       <header>
         <Navbar dark color="primary" expand="sm" className="fixed-top">
           <Link to="/" className="navbar-brand" style={{ color: '#FFF' }}>
+            <img scr="images/logo.png" />
             {Config.appName}
           </Link>
-          <Link to="/memory/new">
-            <i className="icon-notebook" /> <span>New Memory</span>
-          </Link>
+
           <NavbarToggler onClick={this.toggleDropDown} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <div className="d-block d-sm-none">
+              <div className="d-block">
                 {SidebarNavItems()}
               </div>
               <UncontrolledDropdown nav>

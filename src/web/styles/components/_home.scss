@@ -1,6 +1,4 @@
-.button_box2 {
-margin:100px auto;
-}
+
 /*-------------------------------------*/
 .cf:before, .cf:after{
 content:"";
@@ -16,14 +14,11 @@ zoom:1;
 
 .search {
 width: 100%;
-padding: 15px;
-background: #555;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
-border-radius: 10px;
--moz-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
--webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+padding: 5px;
+background: #fff;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
 margin-bottom: 10px;
 }
 .search input {
@@ -32,19 +27,19 @@ height: 40px;
 padding: 10px 5px;
 float: left;
 font: bold 20px 'Raleway', sans-serif;
-color: #fff;
+color: #FFF;
 border: 0;
-background: #555;
--moz-border-radius: 3px 0 0 3px;
--webkit-border-radius: 3px 0 0 3px;
-border-radius: 3px 0 0 3px;
+background: #6EC5B8;
+-moz-border-radius: 1px 0 0 1px;
+-webkit-border-radius: 1px 0 0 1px;
+border-radius: 1px 0 0 1px;
 }
 .search input:focus {
 outline: 0;
 
 }
 .search input::-webkit-input-placeholder {
-color: #999;
+color: #FFF;
 font-weight: normal;
 font-style: italic;
 }
@@ -57,48 +52,4 @@ font-style: italic;
 color: #999;
 font-weight: normal;
 font-style: italic;
-}
-.search button {
-overflow: visible;
-position: relative;
-float: right;
-border: 0;
-padding: 0;
-cursor: pointer;
-height: 40px;
-width: 110px;
-font: bold 15px/40px 'Raleway', sans-serif;
-color: #fff;
-text-transform: uppercase;
-background: #D88F3C;
--moz-border-radius: 0 3px 3px 0;
--webkit-border-radius: 0 3px 3px 0;
-border-radius: 0 3px 3px 0;
-text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
-}
-.search button:hover{
-background: #FA8807;
-}
-.search button:active,
-.search button:focus{
-background: #c42f2f;
-}
-.search button:before {
-content: '';
-position: absolute;
-border-width: 8px 8px 8px 0;
-border-style: solid solid solid none;
-border-color: transparent #D88F3C transparent;
-top: 12px;
-left: -6px;
-}
-.search button:hover:before{
-border-right-color: #FA8807;
-}
-.search button:focus:before{
-border-right-color: #c42f2f;
-}
-.search button::-moz-focus-inner {
-border: 0;
-padding: 0;
 }

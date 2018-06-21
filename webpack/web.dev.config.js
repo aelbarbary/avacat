@@ -26,6 +26,10 @@ module.exports = {
         loader: 'json-loader',
       },
       {
+        test: /\.png/,
+        loader: 'file-loader',
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
