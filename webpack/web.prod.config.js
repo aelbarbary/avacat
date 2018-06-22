@@ -28,6 +28,12 @@ module.exports = {
           presets: ['es2015', 'react', 'stage-0'],
         },
       },
+      {
+         test: /\.(png|svg|jpg|gif)$/,
+         use: [
+           'file-loader'
+         ]
+       }
     ],
   },
   plugins: [

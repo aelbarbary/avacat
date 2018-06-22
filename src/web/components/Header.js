@@ -48,8 +48,8 @@ class Header extends Component {
     return (
       <header>
         <Navbar dark color="primary" expand="sm" className="fixed-top">
+          <img src={require('./../../images/logo.png')} width='40'  />
           <Link to="/" className="navbar-brand" style={{ color: '#FFF' }}>
-
             {Config.appName}
           </Link>
 
