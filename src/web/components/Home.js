@@ -40,6 +40,7 @@ class Home extends Component {
                   <CardTitle>{memory.val().key}</CardTitle>
                   <CardText>{memory.val().value}</CardText>
                 </CardBody>
+                <a class="delete" href="#">test<i class="fa fa-close"></i></a>
               </Card>
             ),
          rawData: memories,

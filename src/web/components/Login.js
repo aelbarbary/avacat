@@ -80,7 +80,7 @@ class Login extends React.Component {
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="john@doe.corp"
+                      placeholder="EMAIL"
                       value={this.state.email}
                       onChange={this.handleChange}
                     />
@@ -91,7 +91,7 @@ class Login extends React.Component {
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="••••••••"
+                      placeholder="PASSWORD"
                       value={this.state.password}
                       onChange={this.handleChange}
                     />
